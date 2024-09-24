@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "lib": ["es2016", "dom"],
+        "outDir": "_pages/build",
+        "strict": true,
+        "noEmitOnError": false,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "forceConsistentCasingInFileNames": true,
+        "allowJs": true,
+        "noImplicitAny": false
+    },
+    "include": ["src/**/*"]
+}
