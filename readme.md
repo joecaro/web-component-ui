@@ -78,11 +78,7 @@ class ChildComponent {
 
 ```js
 connectedCallback() {
-    if (this.isDeffered()) {
-        this.render('')
-    } else {
-        this.fetchPlacement
-    }
+    // setup here
 }
 ```
 
@@ -146,7 +142,7 @@ componentDidUpdate() {
 <td>
 
 ```js
-this.getState("location");
+this.getState("coount");
 ```
 
 </td>
@@ -160,24 +156,8 @@ this.getState("location");
 
 ```js
 this.setState({
-    placement: fetchedPlacement,
-    location: locationToUse,
+    count: count,
 });
-```
-
-</td>
-</tr>
-
-<tr>
-<td>fetchPlacement</td>
-<td></td>
-<td>cb?: (placement, location) => void</td>
-<td>
-
-```js
-this.fetchPlacement((placement, location) =>
-    this.formatPromotions(placement, locations)
-);
 ```
 
 </td>
@@ -241,7 +221,7 @@ The `shouldComponentUpdate` is in the same vein of the shouldComponentUpdate met
 
 ### _excess updates on mount_ \*
 
-when a component is "mounted" (react friendly nomenclature) each existing data attribute fires the `attributeChangedCallback` lifecyle callback once. A quirk of custom elements I guess. As is, this would signal a `refetch` for each attribute. There are a couple of solutions to this:
+when a component is "mounted" (react friendly nomenclature) each existing data attribute fires the `attributeChangedCallback` lifecyle callback once. A quirk of custom elements I guess. As is, this would signal a `rerender` for each attribute. There are a couple of solutions to this:
 
 -   implement some type of 'mounted' state, to restrict fetching until mounted.
 -   shallow compare state updates & stop rendering if nothing changed.
