@@ -1,6 +1,3 @@
-# running at localhost:1234
-
-````
 ---
 ## Overview
 This component render is an implementation of `Web Components`, which are a collection of 3 technologies:
@@ -24,6 +21,9 @@ Web Components have several built in `lifecycle callbacks` that we use:
 
 See [StatefulComponent]() for our base class that contains these lifecycle methods.
 ---
+
+## Running Locally
+The included `build.sh` script will build each componet inm the src/components folder to _pages/components. The sample page includes the start components by default. You can locally host the index.html however works best for you. 
 
 ## Directory Overview
 
