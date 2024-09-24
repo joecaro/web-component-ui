@@ -12,7 +12,7 @@ export default class StatefulComponent extends HTMLElement {
         ];
     }
     _component: ShadowRoot;
-    _excludedStateKeys = []; // keys that should not trigger a re-fetch
+    _excludedStateKeys: string[] = []; // keys that should not trigger a rerender
     state: Record<string, any> = {};
     private _observer: ComponentObserver | null = null;
     private _requiredKeys: string[] = [];
@@ -29,7 +29,8 @@ export default class StatefulComponent extends HTMLElement {
 
     // invoked when appended to the DOM
     // run after constructor
-    connectedCallback() {}
+    connectedCallback() {
+    }
 
     // invoked when removed from DOM
     disconnectedCallback() {
@@ -67,7 +68,7 @@ export default class StatefulComponent extends HTMLElement {
     shouldComponentUpdate(updatedKeys: string[]): boolean {
         if (
             updatedKeys.length === 0 ||
-            updatedKeys.every(key => this._requiredKeys.includes(key))
+            updatedKeys.every(key => this._excludedStateKeys.includes(key))
         ) {
             return false;
         }
@@ -100,20 +101,6 @@ export default class StatefulComponent extends HTMLElement {
 
     componentDidUpdate() {
         // do nothing
-    }
-
-    shouldRefetchPlacement(
-        updatedStateKeys: string[],
-        excludedStateKeys: string[] = this._excludedStateKeys
-    ) {
-        if (updatedStateKeys.length === 0) {
-            return false;
-        }
-        if (updatedStateKeys.some(key => excludedStateKeys.includes(key))) {
-            return false;
-        }
-
-        return true;
     }
 
     isDeffered() {

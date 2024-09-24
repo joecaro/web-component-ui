@@ -14,9 +14,16 @@
         <p>These are web components built on top of a stateful component reminiscent of React class components. They are
             linked together with a EventManager class on the window. Interact with components to see it in action.</p>
 
-        <section class="section">
-            <h2>Complex Interactions</h2>
-            <calculator-component></calculator-component>
+        <section class="two-col-section">
+            <div>
+
+                <h2>Complex Interactions</h2>
+                <calculator-component></calculator-component>
+            </div>
+            <div>
+                <h2>Task Manager</h2>
+                <task-manager></task-manager>
+            </div>
         </section>
 
         <section class="two-col-section">
@@ -28,7 +35,7 @@
     </main>
     <event-toaster></event-toaster>
     <script>
-        const components = ['calculator', 'custom-button', 'event-toaster']
+        const components = ['calculator', 'custom-button', 'event-toaster', 'task-manager']
 
         components.forEach(component => {
             const script = document.createElement('script')

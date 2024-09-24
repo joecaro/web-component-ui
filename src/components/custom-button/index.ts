@@ -30,7 +30,9 @@ class CustomButton extends StatefulComponent {
     }
 
     emitResetEvent() {
-        EventManager.dispatchEvent(this, "reset-calculator", {});
+        EventManager.dispatchEvent(this, "reset-calculator", {
+            message: "Resetting calculator",
+        });
     }
 
     connectedCallback(): void {

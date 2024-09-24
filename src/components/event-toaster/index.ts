@@ -13,6 +13,9 @@ class EventToaster extends StatefulComponent {
         border-radius: 5px;
         transition: top 0.5s;
     }`;
+    private intervalStart = Date.now();
+    private _interval: number | null = null;
+
     constructor() {
         super([]);
         this.state = {
@@ -25,8 +28,19 @@ class EventToaster extends StatefulComponent {
         });
     };
 
+    filterEvents() {
+        const filteredEvents = this.state.events.filter((event: Event) => {
+            return event.timeStamp > Date.now() - this.intervalStart - 5000;
+        });
+
+        this.setState({
+            events: filteredEvents,
+        });
+    }
+
     connectedCallback(): void {
         EventManager.addEventListener(null, null, this.eventHandler.bind(this));
+        this._interval = setInterval(this.filterEvents.bind(this), 500);
     }
 
     disconnectedCallback(): void {
@@ -35,6 +49,10 @@ class EventToaster extends StatefulComponent {
             null,
             this.eventHandler.bind(this)
         );
+
+        if (this._interval) {
+            clearInterval(this._interval);
+        }
     }
 
     render() {
